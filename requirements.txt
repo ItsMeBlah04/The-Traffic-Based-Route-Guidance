@@ -1,5 +1,4 @@
-python_version=="3.10.*"
-tensorflow==2.13.0  # (compatible version for 3.10)
+tensorflow==2.13.0  
 haversine==2.9.0
 scikit-learn==1.6.1
 matplotlib==3.9.4
