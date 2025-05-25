@@ -8,3 +8,5 @@ requests==2.32.3
 polars==1.30.0
 seaborn==0.13.2
 pyarrow==20.0.0
+streamlit==1.45.1
+pydeck==0.9.1
