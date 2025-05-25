@@ -3,6 +3,7 @@ import pandas as pd
 import math
 import polars as pl
 import joblib
+import random
 
 from datetime import datetime
 from tools.gru_training import GRUModel
@@ -14,7 +15,9 @@ class RoutePlanner:
     def __init__(self):
         self.location_df = pl.read_csv("./datasets/node_id_to_location.csv")
         self.location_encode = pl.read_csv("./datasets/unique_locations.csv")
-        self.original_data = pl.read_csv("./datasets/temp.csv")
+        self.original_data = pl.read_csv("./datasets/temp.csv").with_columns(
+            pl.col("Date").str.strptime(pl.Date, format="%Y-%m-%d")
+        )
         self.encoders = {
             "Location": joblib.load("./preprocessor/label_encoders/Location_encoder.pkl"),
             "Site Type": joblib.load("./preprocessor/label_encoders/Site Type_encoder.pkl"),
@@ -78,11 +81,13 @@ class RoutePlanner:
         """
         Given a partial location (e.g., 'auburn_rd'), return the full matching location name.
 
+        First tries prefix match. If no match, tries suffix match (last word match).
+
         Args:
-            location (str): Partial location (case-insensitive, prefix match)
+            location (str): Partial location (case-insensitive, underscored)
 
         Returns:
-            str: The full location name from the dataset
+            str: Best-matched full location name
 
         Raises:
             ValueError: If no match is found
@@ -91,14 +96,19 @@ class RoutePlanner:
             pl.col("Location").str.to_lowercase().alias("Location_lc")
         ])
 
-        match = df.filter(
-            pl.col("Location_lc").str.starts_with(location.lower())
-        )
+        query = location.lower()
+
+        match = df.filter(pl.col("Location_lc").str.starts_with(query))
 
         if match.is_empty():
-            raise ValueError(f"No location found that starts with '{location}'")
+            last_word = query.split("_")[-1]
+            match = df.filter(pl.col("Location_lc").str.ends_with(last_word))
 
-        return match[0, "Location"]  
+        if match.is_empty():
+            raise ValueError(f"No location found that starts with or ends with '{location}'")
+
+        return match[0, "Location"]
+
     
     def convert_date(self, date: str) -> str:
         """
@@ -155,7 +165,7 @@ class RoutePlanner:
         df["Time_cos"] = np.cos(2 * np.pi * df["Time"] / 96).astype("float32")
         df = df.drop(columns=["Time"])
 
-        df["Date"] = pd.to_datetime(df["Date"], dayfirst=True)
+        df["Date"] = pd.to_datetime(df["Date"])
         df["DayOfMonth"] = df["Date"].dt.day
         df["DayOfMonth_sin"] = np.sin(2 * np.pi * df["DayOfMonth"] / 31).astype("float32")
         df["DayOfMonth_cos"] = np.cos(2 * np.pi * df["DayOfMonth"] / 31).astype("float32")
@@ -187,10 +197,11 @@ class RoutePlanner:
         ]]
         df.drop(columns=["day_gap", "Volume"], inplace=True, errors='ignore')
         return df.reset_index(drop=True)
-    
+
     def get_input_sequence(self, location: str, date_str: str, time_str: str, seq_len: int = 24) -> pd.DataFrame:
         """
         Extract and preprocess a 24-step input sequence ending before the specified time.
+        If not enough history is available, randomly select a valid 24-step window from the same day.
         If the exact date is not found, fallback to the latest available date.
 
         Args:
@@ -207,14 +218,14 @@ class RoutePlanner:
         if location_data.is_empty():
             raise ValueError(f"Location '{location}' not found in the dataset.")
 
+        date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
         available_dates = location_data.select("Date").unique().to_series().to_list()
 
-        if date_str not in available_dates:
-            date_str = max(available_dates)
-            print(f"Date '{date_str}' not found for location '{location}'. Using latest available date: {date_str}")
+        if date_obj not in available_dates:
+            date_obj = max(available_dates)
+            print(f"Date '{date_str}' not found for location '{location}'. Using latest available date: {date_obj.strftime('%d/%m/%Y')}")
 
-        filtered = location_data.filter(pl.col("Date") == date_str).sort("Time")
-
+        filtered = location_data.filter(pl.col("Date") == date_obj).sort("Time")
         time_list = filtered.select("Time").to_series().to_list()
 
         if time_str not in time_list:
@@ -223,16 +234,20 @@ class RoutePlanner:
         end_idx = time_list.index(time_str)
 
         if end_idx < seq_len:
-            raise ValueError(f"Not enough history to extract {seq_len} steps before {time_str} on {date_str}")
-
-        raw_sequence = filtered.slice(offset=end_idx - seq_len, length=seq_len)
+            # Not enough data before target time; fallback to a random valid segment
+            total_rows = filtered.shape[0]
+            if total_rows < seq_len:
+                raise ValueError(f"Not enough data at all to extract a {seq_len}-step sequence at {location}")
+            start_idx = random.randint(0, total_rows - seq_len)
+            print(f"⚠️ Not enough history before {time_str}. Randomly selected sequence from index {start_idx} instead.")
+            raw_sequence = filtered.slice(offset=start_idx, length=seq_len)
+        else:
+            raw_sequence = filtered.slice(offset=end_idx - seq_len, length=seq_len)
 
         raw_sequence_pd = raw_sequence.to_pandas()
-
         preprocessed_sequence = self.preprocess_data_sequence(raw_sequence_pd)
 
         return preprocessed_sequence
-
 
     def route_estimate(self, origin: str, destination: str, date: str, time: str, model_type: str = None, path_finder_type: str = None) -> tuple:
         
