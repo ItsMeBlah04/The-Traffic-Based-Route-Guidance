@@ -1,0 +1,54 @@
+Location,Connected Nodes
+auburn_rd,['burwood_rd']
+burwood_rd,"['auburn_rd', 'bridge_rd', 'glenferrie_rd', 'power_st']"
+balwyn_rd,"['belmore_rd', 'canterbury_rd', 'doncaster_rd', 'whitehorse_rd']"
+belmore_rd,"['balwyn_rd', 'burke_rd']"
+whitehorse_rd,"['balwyn_rd', 'burke_rd']"
+canterbury_rd,"['balwyn_rd', 'burke_rd', 'stanhope_gv', 'warrigal_rd']"
+doncaster_rd,"['balwyn_rd', 'bulleen_rd', 'burke_rd', 'severn_st']"
+barkers_rd,"['burke_rd', 'church_st', 'denmark_st', 'high_st', 'power_st']"
+denmark_st,"['barkers_rd', 'high_st']"
+high_st,"['barkers_rd', 'burke_rd', 'charles_st', 'denmark_st', 'harp_rd', 'harp_st', 'princess_st', 's.e.arterial', 'valerie_st', 'wills_st']"
+burke_rd,"['barkers_rd', 'belmore_rd', 'camberwell_rd', 'canterbury_rd', 'cotham_rd', 'doncaster_rd', 'eastern_fwy', 'harp_rd', 'high_st', 'kilby_rd', 'mont albert_rd', 'rathmines_rd', 'riversdale_rd', 'toorak_rd', 'whitehorse_rd']"
+church_st,['barkers_rd']
+bridge_rd,['burwood_rd']
+bulleen_rd,"['doncaster_rd', 'eastern_fwy_w_bd_ramps', 'offramp_eastern_fwy', 'thompsons_rd']"
+thompsons_rd,['bulleen_rd']
+eastern_fwy_w_bd_ramps,['bulleen_rd']
+harp_rd,"['burke_rd', 'high_st']"
+mont albert_rd,['burke_rd']
+riversdale_rd,"['burke_rd', 'glenferrie_rd', 'tooronga_rd', 'trafalgar_rd', 'warrigal_rd']"
+toorak_rd,"['burke_rd', 'tooronga_rd', 'warrigal_rd']"
+eastern_fwy,['burke_rd']
+burnley_st,['victoria_st']
+victoria_st,"['burnley_st', 'walmer_st']"
+burwood_hwy,['warrigal_rd']
+warrigal_rd,"['burwood_hwy', 'canterbury_rd', 'high street_rd', 'highbury_rd', 'riversdale_rd', 'toorak_rd']"
+glenferrie_rd,"['burwood_rd', 'cotham_rd', 'riversdale_rd']"
+power_st,"['barkers_rd', 'burwood_rd']"
+camberwell_rd,"['burke_rd', 'seymour_gv', 'trafalgar_rd']"
+trafalgar_rd,"['camberwell_rd', 'riversdale_rd']"
+stanhope_gv,['canterbury_rd']
+cotham_rd,"['burke_rd', 'glenferrie_rd']"
+severn_st,['doncaster_rd']
+earl_st,['princess_st']
+princess_st,"['chandler_hwy', 'earl_st', 'high_st', 'studley park_rd']"
+high street_rd,['warrigal_rd']
+highbury_rd,['warrigal_rd']
+s.e.arterial,['high_st']
+harp_st,['high_st']
+charles_st,['high_st']
+wills_st,['high_st']
+kilby_rd,['burke_rd']
+madden_gv,['swan_st']
+swan_st,['madden_gv']
+maroondah_hwy,['union_rd']
+union_rd,['maroondah_hwy']
+offramp_eastern_fwy,['bulleen_rd']
+chandler_hwy,['princess_st']
+rathmines_rd,['burke_rd']
+tooronga_rd,"['riversdale_rd', 'toorak_rd']"
+seymour_gv,['camberwell_rd']
+studley park_rd,['princess_st']
+valerie_st,['high_st']
+walmer_st,['victoria_st']

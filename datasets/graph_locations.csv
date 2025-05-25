@@ -1,0 +1,54 @@
+Location,Connected Nodes,Latitude,Longitude
+auburn_rd,['burwood_rd'],-37.8164674,145.0461811
+burwood_rd,"['auburn_rd', 'bridge_rd', 'glenferrie_rd', 'power_st']",-37.822703,145.0361929
+balwyn_rd,"['belmore_rd', 'canterbury_rd', 'doncaster_rd', 'whitehorse_rd']",-37.7902706,145.0857682
+belmore_rd,"['balwyn_rd', 'burke_rd']",-37.8034033,145.102324
+whitehorse_rd,"['balwyn_rd', 'burke_rd']",-37.8114601,145.0698677
+canterbury_rd,"['balwyn_rd', 'burke_rd', 'stanhope_gv', 'warrigal_rd']",-37.8243743,145.084124
+doncaster_rd,"['balwyn_rd', 'bulleen_rd', 'burke_rd', 'severn_st']",-37.7889745,145.1019751
+barkers_rd,"['burke_rd', 'church_st', 'denmark_st', 'high_st', 'power_st']",-37.8125829,145.0191168
+denmark_st,"['barkers_rd', 'high_st']",-37.8078957,145.0289831
+high_st,"['barkers_rd', 'burke_rd', 'charles_st', 'denmark_st', 'harp_rd', 'harp_st', 'princess_st', 's.e.arterial', 'valerie_st', 'wills_st']",-37.8639307,145.0841172
+burke_rd,"['barkers_rd', 'belmore_rd', 'camberwell_rd', 'canterbury_rd', 'cotham_rd', 'doncaster_rd', 'eastern_fwy', 'harp_rd', 'high_st', 'kilby_rd', 'mont albert_rd', 'rathmines_rd', 'riversdale_rd', 'toorak_rd', 'whitehorse_rd']",-37.7858386,145.0639673
+church_st,['barkers_rd'],-37.8192467,145.0173803
+bridge_rd,['burwood_rd'],-37.8199456,145.0159701
+bulleen_rd,"['doncaster_rd', 'eastern_fwy_w_bd_ramps', 'offramp_eastern_fwy', 'thompsons_rd']",-37.7847078,145.0776482
+thompsons_rd,['bulleen_rd'],-37.7792685,145.081886
+eastern_fwy_w_bd_ramps,['bulleen_rd'],-37.79581648,145.159572
+harp_rd,"['burke_rd', 'high_st']",-37.7999045,145.0554133
+mont albert_rd,['burke_rd'],-37.8168314,145.0676484
+riversdale_rd,"['burke_rd', 'glenferrie_rd', 'tooronga_rd', 'trafalgar_rd', 'warrigal_rd']",-37.8316157,145.0589298
+toorak_rd,"['burke_rd', 'tooronga_rd', 'warrigal_rd']",-37.8452216,145.0432696
+eastern_fwy,['burke_rd'],-37.7871017,145.1014189
+burnley_st,['victoria_st'],-37.82040067,145.0081403
+victoria_st,"['burnley_st', 'walmer_st']",-37.8121734,145.0156946
+burwood_hwy,['warrigal_rd'],-37.8452216,145.0432696
+warrigal_rd,"['burwood_hwy', 'canterbury_rd', 'high street_rd', 'highbury_rd', 'riversdale_rd', 'toorak_rd']",-37.8698127,145.0921451
+glenferrie_rd,"['burwood_rd', 'cotham_rd', 'riversdale_rd']",-37.8126209,145.0372215
+power_st,"['barkers_rd', 'burwood_rd']",-37.8265774,145.025405
+camberwell_rd,"['burke_rd', 'seymour_gv', 'trafalgar_rd']",-37.831035,145.0563877
+trafalgar_rd,"['camberwell_rd', 'riversdale_rd']",-37.833693,145.063387
+stanhope_gv,['canterbury_rd'],-37.82404,145.06435
+cotham_rd,"['burke_rd', 'glenferrie_rd']",-37.8101332,145.0587662
+severn_st,['doncaster_rd'],-37.7937244,145.0702314
+earl_st,['princess_st'],-37.7929985,145.031837
+princess_st,"['chandler_hwy', 'earl_st', 'high_st', 'studley park_rd']",-37.8074455,145.0290013
+high street_rd,['warrigal_rd'],-37.8650103,145.0908467
+highbury_rd,['warrigal_rd'],-37.7942175,145.0729076
+s.e.arterial,['high_st'],-37.8612671,145.058038
+harp_st,['high_st'],-37.79961,145.0536159
+charles_st,['high_st'],-37.8109026,145.0347853
+wills_st,['high_st'],-37.8052996,145.0630461
+kilby_rd,['burke_rd'],-37.7911982,145.0410556
+madden_gv,['swan_st'],-37.82912,145.01576
+swan_st,['madden_gv'],-37.82562713,144.999371
+maroondah_hwy,['union_rd'],-37.41022232,145.7066527
+union_rd,['maroondah_hwy'],-37.8127303,145.0998354
+offramp_eastern_fwy,['bulleen_rd'],-37.7820873,145.0778256
+chandler_hwy,['princess_st'],-37.7889152,145.0255913
+rathmines_rd,['burke_rd'],-37.8205912,145.0519941
+tooronga_rd,"['riversdale_rd', 'toorak_rd']",-37.8345987,145.0469307
+seymour_gv,['camberwell_rd'],-37.83756,145.06057
+studley park_rd,['princess_st'],-37.8008155,145.0041653
+valerie_st,['high_st'],-37.7986642,145.0485046
+walmer_st,['victoria_st'],-37.8038577,145.0112402
